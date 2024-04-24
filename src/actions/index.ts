@@ -2,10 +2,10 @@
 
 import * as auth from "@/auth";
 
-export function signIn() {
-  return auth.signIn("github");
+export async function signIn() {
+  return await auth.signIn("github");
 }
 
-export function signOut() {
-  return auth.signOut();
+export async function signOut() {
+  return await auth.signOut();
 }
