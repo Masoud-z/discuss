@@ -1,4 +1,3 @@
-"use client";
 import {
   Avatar,
   Button,
@@ -9,26 +8,26 @@ import {
 } from "@nextui-org/react";
 import { ReactNode } from "react";
 import * as action from "@/actions";
-import { useSession } from "next-auth/react";
+import { auth } from "@/auth";
 
-function HeaderAuth() {
-  const session = useSession();
+const HeaderAuth = async () => {
+  const session = await auth();
   let authContent: ReactNode | ReactNode[];
-  if (session.status === "loading") {
-    return null;
-  } else if (session?.data?.user) {
+  if (session?.user) {
     authContent = (
       <Popover placement="left">
         <PopoverTrigger>
           <Avatar
             className="hover:cursor-pointer"
-            src={session.data.user.image || ""}
+            src={session.user.image || ""}
           />
         </PopoverTrigger>
         <PopoverContent>
           <div className="p-4">
             <form action={action.signOut}>
-              <Button type="submit">Sign Out</Button>
+              <Button color="danger" type="submit">
+                Sign Out
+              </Button>
             </form>
           </div>
         </PopoverContent>
@@ -55,6 +54,6 @@ function HeaderAuth() {
     );
   }
   return authContent;
-}
+};
 
 export default HeaderAuth;
