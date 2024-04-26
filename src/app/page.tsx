@@ -1,4 +1,6 @@
-import TopicCreatePopover from "@/components/topics/TopicCreatePopover";
+import CommonPopover from "@/components/common/CommonPopover";
+import UseLoggingCheck from "@/components/common/UseLoggingCheck";
+import TopicCreateForm from "@/components/topics/TopicCreateForm";
 import TopicList from "@/components/topics/TopicList";
 import { Divider } from "@nextui-org/react";
 
@@ -9,7 +11,10 @@ export default async function Home() {
         <h1 className="font-bold text-xl m-2">Top Posts</h1>
       </div>
       <div className="border shadow py-3 px-2">
-        <TopicCreatePopover />
+        <CommonPopover
+          btnTitle="Create a Topic"
+          popoverContent={<UseLoggingCheck content={<TopicCreateForm />} />}
+        />
         <Divider className="my-2" />
         <h3 className="text-lg mb-2">Topics:</h3>
         <TopicList />

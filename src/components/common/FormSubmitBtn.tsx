@@ -1,16 +1,15 @@
 import { Button } from "@nextui-org/react";
-import { ReactNode } from "react";
 import { useFormStatus } from "react-dom";
 
 interface Props {
-  children: ReactNode;
+  title?: string;
 }
 
-const FormSubmitBtn = ({ children }: Props) => {
+const FormSubmitBtn = ({ title = "Submit" }: Props) => {
   const { pending } = useFormStatus();
   return (
     <Button type="submit" isLoading={pending}>
-      {children}
+      {title}
     </Button>
   );
 };

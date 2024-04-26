@@ -3,6 +3,7 @@ import { Input, Textarea } from "@nextui-org/react";
 import * as actions from "@/actions";
 import { useFormState } from "react-dom";
 import FormSubmitBtn from "../common/FormSubmitBtn";
+import FormError from "../common/FormError";
 
 const TopicCreateForm = () => {
   const [formState, action] = useFormState(actions.createTopic, { errors: {} });
@@ -27,12 +28,10 @@ const TopicCreateForm = () => {
           isInvalid={!!formState.errors.description}
           errorMessage={formState.errors.description?.join(", ")}
         />
-        {formState.errors._form && (
-          <div className="error-container">
-            {formState.errors._form.join(", ")}
-          </div>
-        )}
-        <FormSubmitBtn>Submit</FormSubmitBtn>
+
+        <FormError message={formState.errors._form} />
+
+        <FormSubmitBtn />
       </div>
     </form>
   );
