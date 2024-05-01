@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { auth } from "@/auth";
 import { db } from "@/db";
-import paths from "@/paths";
+import paths from "@/core/routes";
 
 const createCommentSchema = z.object({
   content: z.string().min(3),

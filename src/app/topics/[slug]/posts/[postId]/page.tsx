@@ -1,8 +1,7 @@
 import Link from "next/link";
-import PostShow from "@/components/posts/post-show";
-import CommentList from "@/components/comments/comment-list";
-import CommentCreateForm from "@/components/comments/comment-create-form";
-import paths from "@/paths";
+import paths from "@/core/routes";
+import PostShow from "@/components/posts/PostShow";
+import CommentCreateForm from "@/components/comments/CommentCreateForm";
 
 interface PostShowPageProps {
   params: {
@@ -19,8 +18,8 @@ export default async function PostShowPage({ params }: PostShowPageProps) {
       <Link className="underline decoration-solid" href={paths.topicShow(slug)}>
         {"< "}Back to {slug}
       </Link>
-      {/* <PostShow /> */}
-      {/* <CommentCreateForm postId={postId} startOpen /> */}
+      <PostShow postId={postId} />
+      <CommentCreateForm postId={postId} startOpen />
       {/* <CommentList comments={comments} /> */}
     </div>
   );

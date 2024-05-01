@@ -1,6 +1,5 @@
 import Image from "next/image";
-import { Button } from "@nextui-org/react";
-import CommentCreateForm from "@/components/comments/comment-create-form";
+import CommentCreateForm from "@/components/comments/CommentCreateForm";
 
 interface CommentShowProps {
   commentId: string;
