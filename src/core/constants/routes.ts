@@ -1,4 +1,4 @@
-const paths = {
+export const paths = {
   home: "/",
   topicShow(topicSlug: string) {
     return `/topics/${topicSlug}`;
