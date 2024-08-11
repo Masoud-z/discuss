@@ -1,3 +1,6 @@
+import CommentCreateForm from "@/components/comments/CommentCreateForm";
+import CommentList from "@/components/comments/CommentList";
+import PostShow from "@/components/posts/PostShow";
 import { paths } from "@/core/constants/routes";
 import Link from "next/link";
 
@@ -19,9 +22,9 @@ export default async function PostShowPage({ params }: PostShowPageProps) {
       >
         {"< "}Back to {topicId}
       </Link>
-      {/* <PostShow /> */}
-      {/* <CommentCreateForm postId={postId} startOpen /> */}
-      {/* <CommentList comments={comments} /> */}
+      <PostShow postId={postId} />
+      <CommentCreateForm postId={postId} startOpen />
+      <CommentList postId={postId} />
     </div>
   );
 }
