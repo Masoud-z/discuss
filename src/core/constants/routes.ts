@@ -1,12 +1,12 @@
 export const paths = {
   home: "/",
-  topicShow(topicSlug: string) {
-    return `/topics/${topicSlug}`;
+  topicShow(topicId: string) {
+    return `/topics/${topicId}`;
   },
-  postCreate(topicSlug: string) {
-    return `/topics/${topicSlug}/posts/new`;
+  postCreate(topicId: string) {
+    return `/topics/${topicId}/posts/new`;
   },
-  postShow(topicSlug: string, postId: string) {
-    return `/topics/${topicSlug}/posts/${postId}`;
+  postShow(topicId: string, postId: string) {
+    return `/topics/${topicId}/posts/${postId}`;
   },
 };

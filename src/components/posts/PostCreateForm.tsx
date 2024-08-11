@@ -12,11 +12,11 @@ import { useFormState } from "react-dom";
 import { createPost } from "@/actions";
 
 interface Props {
-  slug: string;
+  topicId: string;
 }
 
-const PostCreateForm = ({ slug }: Props) => {
-  const [formState, action] = useFormState(createPost, {
+const PostCreateForm = ({ topicId }: Props) => {
+  const [formState, action] = useFormState(createPost.bind(null, topicId), {
     errors: {},
   });
 
@@ -45,6 +45,11 @@ const PostCreateForm = ({ slug }: Props) => {
               isInvalid={!!formState.errors?.content}
               errorMessage={formState.errors?.content?.join(", ")}
             />
+            {formState.errors._formError && (
+              <div className="error-container">
+                {formState.errors._formError.join(", ")}
+              </div>
+            )}
             <FormButton>Submit</FormButton>
           </div>
         </form>

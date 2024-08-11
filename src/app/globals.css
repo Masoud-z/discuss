@@ -2,3 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .error-container {
+    @apply border border-red-600 border-solid bg-red-400 text-white font-bold rounded p-2;
+  }
+}

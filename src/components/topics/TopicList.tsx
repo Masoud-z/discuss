@@ -9,7 +9,7 @@ const TopicList = async () => {
   return (
     <div className="flex flex-col gap-2">
       {topics.map((topic) => (
-        <Link key={topic.id} href={paths.topicShow(topic.slug)}>
+        <Link key={topic.id} href={paths.topicShow(topic.id)}>
           <Chip color="warning" variant="shadow">
             {topic.slug}
           </Chip>

@@ -1,7 +1,11 @@
 "use server";
 
 import { auth } from "@/auth";
+import { paths } from "@/core/constants/routes";
+import { db } from "@/db";
 import { Post } from "@prisma/client";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { z } from "zod";
 
 interface CreatePostFormState {
@@ -23,6 +27,7 @@ const createPostSchema = z.object({
 });
 
 export async function createPost(
+  topicId: string,
   formState: CreatePostFormState,
   formData: FormData
 ): Promise<CreatePostFormState> {
@@ -43,15 +48,32 @@ export async function createPost(
     };
   }
 
+  const topic = await db.topic.findFirst({ where: { id: topicId } });
+
+  if (!topic) {
+    return { errors: { _formError: ["Could not find the topic!"] } };
+  }
+
   let post: Post;
-
   try {
-    // post = await db.post.create({ data: {} });
-  } catch (error) {}
+    post = await db.post.create({
+      data: {
+        title: result.data.title,
+        content: result.data.content,
+        topicId: topic.id,
+        userId: session.user.id,
+      },
+    });
+  } catch (error) {
+    if (error instanceof Error) {
+      return { errors: { _formError: [error.message] } };
+    } else {
+      return { errors: { _formError: ["Something went wrong!"] } };
+    }
+  }
 
-  //   revalidatePath(paths.topicShow());
+  revalidatePath(paths.topicShow(topic.id));
+  redirect(paths.postShow(topic.id, post.id));
 
   return { errors: {} };
-
-  // TODO revalidate topic show page
 }

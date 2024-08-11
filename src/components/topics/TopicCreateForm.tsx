@@ -39,7 +39,7 @@ const TopicCreateForm = () => {
               errorMessage={formState.errors.description?.join(", ")}
             />
             {formState.errors._formError ? (
-              <div className="border border-red-400 border-solid bg-red-200 font-bold rounded p-2">
+              <div className="error-container">
                 {formState.errors._formError.join(", ")}
               </div>
             ) : (
