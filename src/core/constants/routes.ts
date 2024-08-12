@@ -1,5 +1,8 @@
 export const paths = {
   home: "/",
+  search(term: string) {
+    return `/search?term=${term}`;
+  },
   topicShow(topicId: string) {
     return `/topics/${topicId}`;
   },
