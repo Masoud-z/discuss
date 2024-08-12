@@ -23,7 +23,7 @@ const PostCreateForm = ({ topicId }: Props) => {
   return (
     <Popover placement="left">
       <PopoverTrigger>
-        <Button color="primary">Create a Topic</Button>
+        <Button color="primary">Create a Post</Button>
       </PopoverTrigger>
       <PopoverContent>
         <form action={action}>
